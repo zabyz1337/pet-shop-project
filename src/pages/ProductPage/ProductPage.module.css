@@ -1,0 +1,160 @@
+.page {
+  padding: 40px 0 80px;
+}
+
+.loading {
+  font-size: 24px;
+  font-weight: 500;
+  color: #282828;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.crumb {
+  padding: 8px 16px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #8b8b8b;
+  text-decoration: none;
+}
+
+.current {
+  padding: 8px 16px;
+  border: 1px solid #282828;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #282828;
+}
+
+.separator {
+  color: #8b8b8b;
+  font-size: 16px;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #282828;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.imageWrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.prices {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.currentPrice {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  color: #282828;
+}
+
+.oldPrice {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #8b8b8b;
+  text-decoration: line-through;
+}
+
+.badge {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #0d50ff;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.button {
+  height: 58px;
+  border: none;
+  border-radius: 10px;
+  background: #0d50ff;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #282828;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #282828;
+}
+
+@media (max-width: 1100px) {
+  .title {
+    font-size: 48px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .currentPrice {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .currentPrice {
+    font-size: 40px;
+  }
+
+  .oldPrice {
+    font-size: 24px;
+  }
+}
