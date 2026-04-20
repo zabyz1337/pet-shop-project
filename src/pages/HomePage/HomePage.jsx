@@ -1,4 +1,5 @@
 import styles from "./HomePage.module.css";
+import HomeCategories from "../../components/HomeCategories/HomeCategories";
 import DiscountBanner from "../../components/DiscountBanner/DiscountBanner";
 
 function HomePage() {
@@ -14,6 +15,8 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomeCategories />
 
       <DiscountBanner />
     </>
