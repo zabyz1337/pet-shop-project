@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../app/slices/cartSlice";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./ProductPage.module.css";
 
 function ProductPage() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -38,6 +41,10 @@ function ProductPage() {
         ((product.price - product.discont_price) / product.price) * 100,
       )
     : 0;
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <section className={styles.page}>
@@ -80,7 +87,9 @@ function ProductPage() {
               )}
             </div>
 
-            <button className={styles.button}>Add to cart</button>
+            <button className={styles.button} onClick={handleAddToCart}>
+              Add to cart
+            </button>
 
             <div className={styles.descriptionBlock}>
               <h2 className={styles.subtitle}>Description</h2>

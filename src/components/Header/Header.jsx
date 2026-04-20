@@ -1,7 +1,12 @@
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "./Header.module.css";
 
 function Header() {
+  const cartItems = useSelector((state) => state.cart.items);
+
+  const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0);
+
   return (
     <header className={styles.header}>
       <div className="container">
@@ -17,7 +22,7 @@ function Header() {
                 isActive ? styles.active : styles.link
               }
             >
-              Home
+              Main Page
             </NavLink>
             <NavLink
               to="/categories"
@@ -47,6 +52,7 @@ function Header() {
 
           <Link to="/cart" className={styles.cart}>
             Cart
+            <span className={styles.count}>{totalCount}</span>
           </Link>
         </div>
       </div>
