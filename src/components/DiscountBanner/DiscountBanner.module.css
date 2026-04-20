@@ -55,6 +55,12 @@
   cursor: pointer;
 }
 
+.petsImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 768px) {
   .box {
     padding: 24px;

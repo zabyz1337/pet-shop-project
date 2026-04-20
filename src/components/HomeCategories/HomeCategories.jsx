@@ -38,7 +38,7 @@ function HomeCategories() {
             >
               <div className={styles.imageWrapper}>
                 <img
-                  src={`http://localhost:3333/${category.image}`}
+                  src={`http://localhost:3333${category.image}`}
                   alt={category.title}
                   className={styles.image}
                 />

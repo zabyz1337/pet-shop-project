@@ -1,4 +1,7 @@
 import styles from "./Footer.module.css";
+import instagramIcon from "../../assets/icons/ic-instagram.svg";
+import whatsappIcon from "../../assets/icons/ic-whatsapp.svg";
+import mapImg from "../../assets/images/map.png";
 
 function Footer() {
   return (
@@ -17,9 +20,8 @@ function Footer() {
           <div className={styles.card}>
             <p className={styles.label}>Socials</p>
             <div className={styles.socials}>
-              <a href="/">Instagram</a>
-              <a href="/">Facebook</a>
-              <a href="/">WhatsApp</a>
+              <img src={instagramIcon} alt="instagram" />
+              <img src={whatsappIcon} alt="whatsapp" />
             </div>
           </div>
 
@@ -36,7 +38,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className={styles.map}>Map</div>
+        <div className={styles.map}>
+          <img src={mapImg} alt="map" className={styles.mapImage} />
+        </div>
       </div>
     </footer>
   );

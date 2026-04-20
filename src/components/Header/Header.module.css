@@ -61,6 +61,18 @@
   font-size: 14px;
 }
 
+.logoIcon {
+  width: 70px;
+  height: 70px;
+  display: block;
+}
+
+.cartIcon {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
 @media (max-width: 768px) {
   .row {
     min-height: auto;

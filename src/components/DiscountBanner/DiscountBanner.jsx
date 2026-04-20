@@ -1,3 +1,4 @@
+import petsImg from "../../assets/images/discount-pets.png";
 import styles from "./DiscountBanner.module.css";
 
 function DiscountBanner() {
@@ -8,7 +9,9 @@ function DiscountBanner() {
           <h2 className={styles.title}>5% off on the first order</h2>
 
           <div className={styles.wrapper}>
-            <div className={styles.left}></div>
+            <div className={styles.left}>
+              <img src={petsImg} alt="pets" className={styles.petsImage} />
+            </div>
 
             <div className={styles.right}>
               <form className={styles.form}>
