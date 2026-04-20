@@ -3,6 +3,7 @@ import heroImg from "../../assets/images/hero.png";
 import styles from "./HomePage.module.css";
 import HomeCategories from "../../components/HomeCategories/HomeCategories";
 import DiscountBanner from "../../components/DiscountBanner/DiscountBanner";
+import HomeSale from "../../components/HomeSale/HomeSale";
 
 function HomePage() {
   return (
@@ -22,6 +23,7 @@ function HomePage() {
 
       <HomeCategories />
       <DiscountBanner />
+      <HomeSale />
     </>
   );
 }
