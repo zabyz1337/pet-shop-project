@@ -1,0 +1,35 @@
+.home {
+  padding: 40px 0 80px;
+}
+
+.hero {
+  min-height: 500px;
+  padding: 80px 40px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2451c6, #0d50ff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  max-width: 700px;
+  margin-bottom: 32px;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.button {
+  width: fit-content;
+  min-width: 180px;
+  height: 52px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}

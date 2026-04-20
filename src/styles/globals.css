@@ -1,0 +1,33 @@
+body {
+  min-width: 320px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #282828;
+  background: #ffffff;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.pageStub {
+  padding: 60px 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .pageStub {
+    font-size: 24px;
+  }
+}
