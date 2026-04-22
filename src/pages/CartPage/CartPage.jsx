@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import axiosInstance from "../../api/axiosInstance";
 import {
   incrementItem,
   decrementItem,
   removeFromCart,
+  clearCart,
 } from "../../app/slices/cartSlice";
 import styles from "./CartPage.module.css";
+import { useState } from "react";
 
 function CartPage() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
   const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0);
 
@@ -21,6 +33,29 @@ function CartPage() {
 
     return sum + price * item.count;
   }, 0);
+
+  const onSubmit = async (data) => {
+    const orderProducts = cartItems.map((item) => ({
+      id: item.id,
+      quantity: item.count,
+    }));
+
+    const payload = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      products: orderProducts,
+    };
+
+    try {
+      await axiosInstance.post("/order/send", payload);
+      setIsModalOpen(true);
+      dispatch(clearCart());
+      reset();
+    } catch (error) {
+      console.error("Error sending order:", error);
+    }
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -71,7 +106,7 @@ function CartPage() {
                 <article key={item.id} className={styles.card}>
                   <div className={styles.imageWrapper}>
                     <img
-                      src={`http://localhost:3333/${item.image}`}
+                      src={`http://localhost:3333${item.image}`}
                       alt={item.title}
                       className={styles.image}
                     />
@@ -143,12 +178,100 @@ function CartPage() {
               </span>
             </div>
 
-            <button type="button" className={styles.orderButton}>
-              Order
-            </button>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+              <div className={styles.field}>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className={styles.input}
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Name must be at least 2 characters",
+                    },
+                  })}
+                />
+                {errors.name && (
+                  <span className={styles.error}>{errors.name.message}</span>
+                )}
+              </div>
+
+              <div className={styles.field}>
+                <input
+                  type="tel"
+                  placeholder="Phone number"
+                  className={styles.input}
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    minLength: {
+                      value: 5,
+                      message: "Phone number is too short",
+                    },
+                  })}
+                />
+                {errors.phone && (
+                  <span className={styles.error}>{errors.phone.message}</span>
+                )}
+              </div>
+
+              <div className={styles.field}>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className={styles.input}
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+\.\S+$/,
+                      message: "Enter a valid email",
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <span className={styles.error}>{errors.email.message}</span>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className={styles.orderButton}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Order"}
+              </button>
+            </form>
           </aside>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className={styles.modal}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.modalClose}
+              onClick={() => setIsModalOpen(false)}
+            >
+              ×
+            </button>
+
+            <h2 className={styles.modalTitle}>Congratulations!</h2>
+            <p className={styles.modalText}>
+              Your order has been successfully placed on the website.
+            </p>
+            <p className={styles.modalText}>
+              A manager will contact you shortly to confirm your order.
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
