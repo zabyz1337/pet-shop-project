@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./HomeSale.module.css";
+import ProductCard from "../ProductCard/ProductCard";
 
 function HomeSale() {
   const [products, setProducts] = useState([]);
@@ -20,11 +21,12 @@ function HomeSale() {
   }, []);
 
   const saleProducts = useMemo(() => {
-    return products
+    return [...products]
       .filter(
         (product) =>
           product.discont_price !== null && product.discont_price !== undefined,
       )
+      .sort(() => 0.5 - Math.random())
       .slice(0, 4);
   }, [products]);
 
@@ -40,40 +42,9 @@ function HomeSale() {
         </div>
 
         <div className={styles.grid}>
-          {saleProducts.map((product) => {
-            const discountPercent = Math.round(
-              ((product.price - product.discont_price) / product.price) * 100,
-            );
-
-            return (
-              <Link
-                key={product.id}
-                to={`/products/${product.id}`}
-                className={styles.card}
-              >
-                <div className={styles.imageWrapper}>
-                  <div className={styles.badge}>-{discountPercent}%</div>
-
-                  <img
-                    src={`http://localhost:3333${product.image}`}
-                    alt={product.title}
-                    className={styles.image}
-                  />
-                </div>
-
-                <div className={styles.content}>
-                  <p className={styles.name}>{product.title}</p>
-
-                  <div className={styles.prices}>
-                    <span className={styles.currentPrice}>
-                      ${product.discont_price}
-                    </span>
-                    <span className={styles.oldPrice}>${product.price}</span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+          {saleProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </section>
