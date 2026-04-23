@@ -57,7 +57,7 @@ function CartPage() {
     }
   };
 
-  if (cartItems.length === 0) {
+  if (cartItems.length === 0 && !isModalOpen) {
     return (
       <section className={styles.page}>
         <div className="container">
