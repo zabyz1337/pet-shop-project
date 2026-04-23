@@ -19,9 +19,7 @@ function DiscountBanner() {
       await axiosInstance.post("/sale/send", data);
       setIsSuccess(true);
       reset();
-    } catch (error) {
-      console.error("Error sending discount request:", error);
-    }
+    } catch {}
   };
 
   return (

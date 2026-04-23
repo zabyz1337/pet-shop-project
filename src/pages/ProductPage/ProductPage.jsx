@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../app/slices/cartSlice";
 import axiosInstance from "../../api/axiosInstance";
@@ -51,7 +51,11 @@ function ProductPage() {
     <section className={styles.page}>
       <div className="container">
         <Breadcrumbs
-          items={[{ label: "Main page", path: "/" }, { label: "All products" }]}
+          items={[
+            { label: "Main page", path: "/" },
+            { label: "All products", path: "/products" },
+            { label: product.title },
+          ]}
         />
 
         <h1 className={styles.title}>{product.title}</h1>

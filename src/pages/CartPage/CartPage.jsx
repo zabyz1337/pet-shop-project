@@ -52,9 +52,7 @@ function CartPage() {
       setIsModalOpen(true);
       dispatch(clearCart());
       reset();
-    } catch (error) {
-      console.error("Error sending order:", error);
-    }
+    } catch {}
   };
 
   if (cartItems.length === 0 && !isModalOpen) {

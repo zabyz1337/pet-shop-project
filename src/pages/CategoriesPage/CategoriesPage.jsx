@@ -12,9 +12,7 @@ function CategoriesPage() {
       try {
         const response = await axiosInstance.get("/categories/all");
         setCategories(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
+      } catch {}
     };
 
     fetchCategories();

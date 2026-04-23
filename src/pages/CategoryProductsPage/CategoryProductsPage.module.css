@@ -118,6 +118,37 @@
   line-height: 1.2;
 }
 
+.filters {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: 20px;
+  font-weight: 600;
+  color: #282828;
+}
+
+.input,
+.select {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #282828;
+  background: #ffffff;
+}
+
 @media (max-width: 1100px) {
   .title {
     font-size: 48px;

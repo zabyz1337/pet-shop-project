@@ -13,9 +13,7 @@ function AllProductsPage() {
       try {
         const response = await axiosInstance.get("/products/all");
         setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching all products:", error);
-      }
+      } catch {}
     };
 
     fetchProducts();
