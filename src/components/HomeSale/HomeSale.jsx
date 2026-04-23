@@ -21,13 +21,19 @@ function HomeSale() {
   }, []);
 
   const saleProducts = useMemo(() => {
-    return [...products]
-      .filter(
-        (product) =>
-          product.discont_price !== null && product.discont_price !== undefined,
-      )
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 4);
+    const filtered = products.filter(
+      (product) =>
+        product.discont_price !== null && product.discont_price !== undefined,
+    );
+
+    const shuffled = [...filtered];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled.slice(0, 4);
   }, [products]);
 
   return (
