@@ -19,9 +19,27 @@ function Footer() {
 
           <div className={styles.card}>
             <p className={styles.label}>Socials</p>
+
             <div className={styles.socials}>
-              <img src={instagramIcon} alt="instagram" />
-              <img src={whatsappIcon} alt="whatsapp" />
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.socialLink}
+                aria-label="Instagram"
+              >
+                <img src={instagramIcon} alt="instagram" />
+              </a>
+
+              <a
+                href="https://wa.me/493091588492"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.socialLink}
+                aria-label="WhatsApp"
+              >
+                <img src={whatsappIcon} alt="whatsapp" />
+              </a>
             </div>
           </div>
 
