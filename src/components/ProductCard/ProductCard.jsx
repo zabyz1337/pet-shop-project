@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../app/slices/cartSlice";
 import styles from "./ProductCard.module.css";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
+
+  const isInCart = useSelector((state) =>
+    state.cart.items.some((item) => item.id === product.id),
+  );
 
   const hasDiscount =
     product.discont_price !== null && product.discont_price !== undefined;
@@ -22,24 +26,34 @@ function ProductCard({ product }) {
   const handleAddToCart = (event) => {
     event.preventDefault();
     event.stopPropagation();
+
+    if (isInCart) return;
+
     dispatch(addToCart(product));
   };
 
   return (
     <div className={styles.card}>
-      <Link to={`/products/${product.id}`} className={styles.link}>
-        <div className={styles.imageWrapper}>
+      <div className={styles.imageWrapper}>
+        <Link to={`/products/${product.id}`} className={styles.imageLink}>
           {hasDiscount && (
             <div className={styles.badge}>-{discountPercent}%</div>
           )}
 
           <img src={imageUrl} alt={product.title} className={styles.image} />
+        </Link>
 
-          <button className={styles.addButton} onClick={handleAddToCart}>
-            Add to cart
-          </button>
-        </div>
+        <button
+          type="button"
+          className={`${styles.addButton} ${isInCart ? styles.added : ""}`}
+          onClick={handleAddToCart}
+          disabled={isInCart}
+        >
+          {isInCart ? "Added" : "Add to cart"}
+        </button>
+      </div>
 
+      <Link to={`/products/${product.id}`} className={styles.link}>
         <div className={styles.content}>
           <p className={styles.name}>{product.title}</p>
 
