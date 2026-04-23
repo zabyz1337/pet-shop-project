@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./CategoryProductsPage.module.css";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 function CategoryProductsPage() {
   const { id } = useParams();
@@ -33,17 +34,13 @@ function CategoryProductsPage() {
   return (
     <section className={styles.page}>
       <div className="container">
-        <div className={styles.breadcrumbs}>
-          <Link to="/" className={styles.crumb}>
-            Main page
-          </Link>
-          <span className={styles.separator}>/</span>
-          <Link to="/categories" className={styles.crumb}>
-            Categories
-          </Link>
-          <span className={styles.separator}>/</span>
-          <span className={styles.current}>{categoryData.category.title}</span>
-        </div>
+        <Breadcrumbs
+          items={[
+            { label: "Main page", path: "/" },
+            { label: "Categories", path: "/categories" },
+            { label: categoryData?.category?.title || "Category" },
+          ]}
+        />
 
         <h1 className={styles.title}>{categoryData.category.title}</h1>
 

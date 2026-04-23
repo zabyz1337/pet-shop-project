@@ -2,27 +2,6 @@
   padding: 40px 0 80px;
 }
 
-.breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 40px;
-  font-size: 16px;
-}
-
-.crumb {
-  color: #8b8b8b;
-  text-decoration: none;
-}
-
-.separator {
-  color: #dddddd;
-}
-
-.current {
-  color: #282828;
-}
-
 .title {
   margin-bottom: 40px;
   font-size: 64px;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./CategoriesPage.module.css";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 function CategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -22,13 +23,9 @@ function CategoriesPage() {
   return (
     <section className={styles.categoriesPage}>
       <div className="container">
-        <div className={styles.breadcrumbs}>
-          <Link to="/" className={styles.crumb}>
-            Main page
-          </Link>
-          <span className={styles.separator}>/</span>
-          <span className={styles.current}>Categories</span>
-        </div>
+        <Breadcrumbs
+          items={[{ label: "Main page", path: "/" }, { label: "Categories" }]}
+        />
 
         <h1 className={styles.title}>Categories</h1>
 

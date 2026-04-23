@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../app/slices/cartSlice";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./ProductPage.module.css";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 function ProductPage() {
   const { id } = useParams();
@@ -60,6 +61,10 @@ function ProductPage() {
           <span className={styles.separator}>/</span>
           <span className={styles.current}>{product.title}</span>
         </div>
+
+        <Breadcrumbs
+          items={[{ label: "Main page", path: "/" }, { label: "All products" }]}
+        />
 
         <h1 className={styles.title}>{product.title}</h1>
 

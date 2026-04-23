@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./DiscountedProductsPage.module.css";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 function DiscountedProductsPage() {
   const [products, setProducts] = useState([]);
@@ -29,13 +30,9 @@ function DiscountedProductsPage() {
   return (
     <section className={styles.page}>
       <div className="container">
-        <div className={styles.breadcrumbs}>
-          <Link to="/" className={styles.crumb}>
-            Main page
-          </Link>
-          <span className={styles.separator}>/</span>
-          <span className={styles.current}>All sales</span>
-        </div>
+        <Breadcrumbs
+          items={[{ label: "Main page", path: "/" }, { label: "All sales" }]}
+        />
 
         <h1 className={styles.title}>Discounted items</h1>
 
