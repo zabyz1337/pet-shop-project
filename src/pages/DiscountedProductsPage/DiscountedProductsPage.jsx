@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import styles from "./DiscountedProductsPage.module.css";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 function DiscountedProductsPage() {
   const [products, setProducts] = useState([]);
@@ -37,40 +37,9 @@ function DiscountedProductsPage() {
         <h1 className={styles.title}>Discounted items</h1>
 
         <div className={styles.grid}>
-          {discountedProducts.map((product) => {
-            const discountPercent = Math.round(
-              ((product.price - product.discont_price) / product.price) * 100,
-            );
-
-            return (
-              <Link
-                key={product.id}
-                to={`/products/${product.id}`}
-                className={styles.card}
-              >
-                <div className={styles.imageWrapper}>
-                  <div className={styles.badge}>-{discountPercent}%</div>
-
-                  <img
-                    src={`http://localhost:3333${product.image}`}
-                    alt={product.title}
-                    className={styles.image}
-                  />
-                </div>
-
-                <div className={styles.content}>
-                  <p className={styles.name}>{product.title}</p>
-
-                  <div className={styles.prices}>
-                    <span className={styles.currentPrice}>
-                      ${product.discont_price}
-                    </span>
-                    <span className={styles.oldPrice}>${product.price}</span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+          {discountedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </section>
