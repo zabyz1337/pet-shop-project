@@ -50,18 +50,6 @@ function ProductPage() {
   return (
     <section className={styles.page}>
       <div className="container">
-        <div className={styles.breadcrumbs}>
-          <Link to="/" className={styles.crumb}>
-            Main page
-          </Link>
-          <span className={styles.separator}>/</span>
-          <Link to="/products" className={styles.crumb}>
-            All products
-          </Link>
-          <span className={styles.separator}>/</span>
-          <span className={styles.current}>{product.title}</span>
-        </div>
-
         <Breadcrumbs
           items={[{ label: "Main page", path: "/" }, { label: "All products" }]}
         />
